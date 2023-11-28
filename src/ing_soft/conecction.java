@@ -17,29 +17,29 @@ import java.sql.SQLException;
  */
 public class conecction {
     
-    public static Connection ConectarBD(){
-        Connection conexion;
-        String host = "jdbc:mysql://localhost/";///ip del la base de datos
-        String user = "root";///usuario
-        String pass = "";//contrse;a
-        String bd = "bd_control_asistencia";
-        
-        System.out.println("Conectando...");
-        
+    // Información de la base de datos
+    private static final String host = "jdbc:mysql://localhost/";///ip del la base de datos
+    private static final String user = "root";///usuario
+    private static final String pass = "";//contrsena
+    private static final String bd = "bd_control_asistencia";
+    
+    
+    public Connection ConectarBD(){
         try {
-            conexion = DriverManager.getConnection(host+bd,user,pass);
-             System.out.println("Conexion exitosa");
+            // Establecer la conexión
+            System.out.println("Conexion correcta");
+            return DriverManager.getConnection(host+bd, user, pass);
             
         } catch (SQLException e) {
-              System.out.println(e.getMessage());
-              throw new RuntimeException(e);
+            System.out.println(e);
+            return null; // Manejo básico de errores, en un entorno de producción, maneja las excepciones de manera más adecuada.
+        
         }
         
-    return conexion;
-    
+  
     } 
     
-    public static void Desconectar(Connection cb){
+    public void Desconectar(Connection cb){
         try {
             cb.close();
             System.out.println("Desconectado");

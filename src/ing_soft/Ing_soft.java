@@ -15,10 +15,18 @@ public class Ing_soft {
      */
     public static void main(String[] args) {
        
-        
-       
+        Usuario obj = new Usuario();
+        boolean acces;
+        acces = obj.verificar_user("Alberto","9999");
+        if(acces){
+            System.out.println("Ambos datos son correctamente ");
+         
+        } else {
+            System.out.println("DAtos no validos ni correctos");   
+        }
+        }
 
        
     }
     
-}
+
