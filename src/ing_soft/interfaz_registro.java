@@ -43,6 +43,12 @@ public class interfaz_registro extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña");
 
+        jtf_input_contra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_input_contraActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Verificar contraseña");
 
         jButton1.setText("Registrar");
@@ -132,6 +138,10 @@ public class interfaz_registro extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtf_input_contraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_input_contraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_input_contraActionPerformed
 
     /**
      * @param args the command line arguments
