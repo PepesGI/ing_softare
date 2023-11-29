@@ -83,6 +83,43 @@ public class Usuario {
                 
         
         }
+    
+    ///metodo para evitar duplicado de usuarios
+    public boolean Verificar_duplicado(String nombreIngresado) {
+        
+   
+            // Establecer la conexión
+            conecction cone = new conecction();
+            // Consulta SQL para la inserción
+            try (Connection  con =  cone.ConectarBD()) {
+                // Consulta SQL para la inserción
+                String consulta = "SELECT COUNT(*) AS contador FROM usuario WHERE nom_user = ? ";
+
+                // Preparar la declaración SQL
+                 try (PreparedStatement declaracion = con.prepareStatement(consulta)) {
+                // Establecer los valores de los datos en la declaración
+                declaracion.setString(1, nombreIngresado);
+
+                // Ejecutar la consulta
+                ResultSet resultado = declaracion.executeQuery();
+
+                // Verificar el resultado
+                if (resultado.next()) {
+                    int contador = resultado.getInt("contador");
+                    return contador > 0; // Devuelve true si existe al menos una coincidencia
+                }
+            }
+
+            // Cerrar la conexión
+            con.close();
+        } catch (SQLException e) {
+                System.out.println(e);
+        }
+
+        return false; // Si ocurre un error o no hay coincidencias
+                
+        
+        }
   
     }
         

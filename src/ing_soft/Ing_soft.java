@@ -17,7 +17,7 @@ public class Ing_soft {
        
         Usuario obj = new Usuario();
         boolean acces;
-        acces = obj.verificar_user("Alberto","9999");
+        acces = obj.verificar_user("Alberto","1234");
         if(acces){
             System.out.println("Ambos datos son correctamente ");
          
