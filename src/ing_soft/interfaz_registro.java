@@ -112,7 +112,7 @@ public class interfaz_registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nomingresado, contraingresado;
+       
         Usuario obj = new Usuario();
         
         if(jtf_input_name.getText().equals("") || jtf_input_contra.getText().equals("") || jtf_input_verifcontra.getText().equals("")){
