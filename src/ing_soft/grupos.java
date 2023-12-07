@@ -21,6 +21,7 @@ public class grupos {
             bnd=false;
             
         } else {
+                
             bnd=true;
         }
             
