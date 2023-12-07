@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 
 
-
 /**
  *
  * @author bob_p
@@ -18,9 +17,9 @@ import java.sql.SQLException;
 public class conecction {
     
     // Información de la base de datos
-    private static final String host = "jdbc:mysql://localhost/";///ip del la base de datos
-    private static final String user = "root";///usuario
-    private static final String pass = "";//contrsena
+    private static final String host = "jdbc:mysql://bd-control-asistencia.cizxfjuhhtmw.us-east-2.rds.amazonaws.com:3306/";///ip del la base de datos
+    private static final String user = "ing_soft_user";///usuario
+    private static final String pass = "mypassword";//contrsena
     private static final String bd = "bd_control_asistencia";
     
     
