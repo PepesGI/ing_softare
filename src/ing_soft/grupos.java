@@ -47,11 +47,7 @@ public class grupos {
         }
       
         
-        
-        
-        
-        
-        
+      
 }
     
     
@@ -195,7 +191,7 @@ public class grupos {
       private static int obtenerIdCiclo(String ciclo) {
         conecction cone = new conecction();
         try (Connection  con =  cone.ConectarBD()) {
-            String consulta = "SELECT ciclo FROM materia WHERE ciclo = ?";
+            String consulta = "SELECT id_ciclo FROM cilco WHERE ciclo = ?";
             try (PreparedStatement statement = con.prepareStatement(consulta)) {
                 statement.setString(1, ciclo);
 
