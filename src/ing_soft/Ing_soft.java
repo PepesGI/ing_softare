@@ -22,7 +22,7 @@ public class Ing_soft {
             System.out.println("Ambos datos son correctamente ");
          
         } else {
-            System.out.println("DAtos no validos ni correctos");   
+            System.out.println("Datos no validos ni correctos");   
         }
         }
 
