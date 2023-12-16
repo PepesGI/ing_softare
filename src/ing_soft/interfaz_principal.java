@@ -580,6 +580,8 @@ public class interfaz_principal extends javax.swing.JFrame {
         Alumno alum = new Alumno();
         alum.Registrar_Alum(jtf_input_nomalum.getText(), jtf_input_boletaalum.getText(), (String) select_grupos.getSelectedItem());
         MostrarAlumnos((String) select_grupos.getSelectedItem());
+        jtf_input_nomalum.setText("");
+        jtf_input_boletaalum.setText("");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
