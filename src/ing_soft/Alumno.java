@@ -6,7 +6,7 @@ package ing_soft;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 
 /**
@@ -16,26 +16,37 @@ import java.sql.SQLException;
 public class Alumno {
     
     
-    private static int obtenerIdGrupo(String nom_grupo) {
-        conecction cone = new conecction();
-        try (Connection  con =  cone.ConectarBD()) {
-            String consulta = "SELECT id_grupo FROM grupo WHERE nom_grupo = ?";
-            try (PreparedStatement statement = con.prepareStatement(consulta)) {
-                statement.setString(1, nom_grupo);
-
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return resultSet.getInt("id_grupo");
-                    }
+       public boolean Registrar_Alum(String nombreIngresado, String boletaIngresada, String nom_grupo) {    
+        
+        try {
+            // Establecer la conexión
+            conecction cone = new conecction();
+            // Consulta SQL para la inserción
+            try (Connection  con =  cone.ConectarBD()) {
+                // Consulta SQL para la inserción
+                String consulta = "INSERT INTO alumno (id_grupo, nom_alum, boleta_alum) VALUES (?, ?, ?)";
+                // Preparar la declaración SQL
+                try (PreparedStatement declaracion = con.prepareStatement(consulta)) {
+                    // Establecer los valores de los nuevos datos en la declaración
+                    declaracion.setInt(1, grupos.obtenerIdGrupo(nom_grupo));
+                    declaracion.setString(2, nombreIngresado);
+                    declaracion.setString(3, boletaIngresada);
+                    
+                    // Ejecutar la consulta
+                    declaracion.executeUpdate();
+                    
                 }
+                // Cerrar la conexión
             }
+
+            System.out.println("Datos insertados correctamente.");
+            return true;
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
         }
-        return -1; // Valor por defecto si el usuario no existe o hay un error
-    }
-    
-    
+        
+    } 
     
     
     

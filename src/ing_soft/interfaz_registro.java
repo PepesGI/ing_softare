@@ -39,7 +39,7 @@ public class interfaz_registro extends javax.swing.JFrame {
         jtf_input_verifcontra = new javax.swing.JTextField();
         jtf_input_name = new javax.swing.JTextField();
         jbtn_registrar = new javax.swing.JButton();
-        PRUEBAS = new javax.swing.JLabel();
+        jbl_warnigs_contrasena = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +123,7 @@ public class interfaz_registro extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 433, 103, 0);
         jPanel1.add(jbtn_registrar, gridBagConstraints);
 
-        PRUEBAS.setText("aaa");
+        jbl_warnigs_contrasena.setText("datos para que la contrasena sea valida");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -131,7 +131,7 @@ public class interfaz_registro extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 102;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(7, 420, 0, 0);
-        jPanel1.add(PRUEBAS, gridBagConstraints);
+        jPanel1.add(jbl_warnigs_contrasena, gridBagConstraints);
 
         jLabel1.setText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -170,19 +170,24 @@ public class interfaz_registro extends javax.swing.JFrame {
         
         if(jtf_input_name.getText().equals("") || jtf_input_contra.getText().equals("") || jtf_input_verifcontra.getText().equals("")){
             
-            PRUEBAS.setText("Camara qlo, ponle datos");
+            jbl_warnigs_contrasena.setText("Introducir datos");
             
         }else if(obj.Verificar_duplicado(jtf_input_name.getText())) {
             //verificar usuario
             //usuario ya registrado
-            PRUEBAS.setText("Usuario ya registrado");
+            jbl_warnigs_contrasena.setText("Usuario ya registrado");
             
                 
             } else if(jtf_input_contra.getText().equals(jtf_input_verifcontra.getText())){
             ///hay datos, no hay usuario ya registrado, contrasena coincide
             if(obj.Registrar_User(jtf_input_contra.getText(), jtf_input_contra.getText()))
                 System.out.println("Datos agregados correctamente");
+            
+            
                     //manda a llamar al la pantalla principal
+                    interfaz_principal inter = new interfaz_principal();
+                    inter.setVisible(true);
+                    this.dispose();
 
             
             }
@@ -232,11 +237,11 @@ public class interfaz_registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel PRUEBAS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jbl_warnigs_contrasena;
     private javax.swing.JButton jbtn_registrar;
     private javax.swing.JTextField jtf_input_contra;
     private javax.swing.JTextField jtf_input_name;

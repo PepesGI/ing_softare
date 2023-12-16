@@ -150,9 +150,9 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="PRUEBAS">
+        <Component class="javax.swing.JLabel" name="jbl_warnigs_contrasena">
           <Properties>
-            <Property name="text" type="java.lang.String" value="aaa"/>
+            <Property name="text" type="java.lang.String" value="datos para que la contrasena sea valida"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

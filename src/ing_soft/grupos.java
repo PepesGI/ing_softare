@@ -9,6 +9,7 @@ import java.sql.SQLException;
 public class grupos {
     
     
+    
     public boolean Crear_grupo(String nom_prof, String nom_mat, String nom_grupo, String ciclo){
         
         boolean bnd=true;
@@ -21,7 +22,7 @@ public class grupos {
             bnd=false;
             
         } else {
-                
+                System.out.println("Estamos agregfandp datps.");
             bnd=true;
         }
             
@@ -63,7 +64,7 @@ public class grupos {
                     if (resultSet.next()) {
                         int count = resultSet.getInt("count");
                         if (count > 0) {
-                            System.out.println("El usuario ya está registrado.");
+                            System.out.println("El profesor ya esta registrado.");
                             return false; // El usuario ya existe
                         } else {
                             // El usuario no existe, agregarlo
@@ -88,7 +89,7 @@ public class grupos {
         
         conecction cone = new conecction();
         try ( Connection  con =  cone.ConectarBD() ) {
-            String consulta = "SELECT COUNT(*) AS count FROM profesor WHERE nom_mat = ?";
+            String consulta = "SELECT COUNT(*) AS count FROM materia WHERE nom_mat = ?";
             try (PreparedStatement statement = con.prepareStatement(consulta)) {
                 statement.setString(1, nom_mat);
 
@@ -96,15 +97,15 @@ public class grupos {
                     if (resultSet.next()) {
                         int count = resultSet.getInt("count");
                         if (count > 0) {
-                            System.out.println("El usuario ya está registrado.");
+                            System.out.println("La materia ya se registro antes.");
                             return false; // El usuario ya existe
                         } else {
                             // El usuario no existe, agregarlo
-                            String insercion = "INSERT INTO profesor (nom_mat) VALUES (?)";
+                            String insercion = "INSERT INTO materia (nom_mat) VALUES (?)";
                             try (PreparedStatement insertStatement = con.prepareStatement(insercion)) {
                                 insertStatement.setString(1, nom_mat);
                                 insertStatement.executeUpdate();
-                                System.out.println("Usuario agregado correctamente.");
+                                System.out.println("Materiaagregado correctamente.");
                                 return true; // Operación completada correctamente
                             }
                         }
@@ -129,7 +130,7 @@ public class grupos {
                     if (resultSet.next()) {
                         int count = resultSet.getInt("count");
                         if (count > 0) {
-                            System.out.println("El usuario ya está registrado.");
+                            System.out.println("El ciclo ya está registrado.");
                             return false; // El usuario ya existe
                         } else {
                             // El usuario no existe, agregarlo
@@ -191,7 +192,7 @@ public class grupos {
       private static int obtenerIdCiclo(String ciclo) {
         conecction cone = new conecction();
         try (Connection  con =  cone.ConectarBD()) {
-            String consulta = "SELECT id_ciclo FROM cilco WHERE ciclo = ?";
+            String consulta = "SELECT id_ciclo FROM ciclo WHERE ciclo = ?";
             try (PreparedStatement statement = con.prepareStatement(consulta)) {
                 statement.setString(1, ciclo);
 
@@ -206,6 +207,65 @@ public class grupos {
         }
         return -1; // Valor por defecto si el usuario no existe o hay un error
     }
+      
+      public static int obtenerIdGrupo(String nom_grupo) {
+          
+        conecction cone = new conecction();
+        
+        try (Connection  con =  cone.ConectarBD()) {
+            String consulta = "SELECT id_grupo FROM grupo WHERE nom_grupo = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta)) {
+                statement.setString(1, nom_grupo);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt("id_grupo");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1; // Valor por defecto si el usuario no existe o hay un error
+    }
+      
+      
+      
+          public boolean Verificar_duplicado(String nombreGrupo) {
+        
+   
+            // Establecer la conexión
+            conecction cone = new conecction();
+            // Consulta SQL para la inserción
+            try (Connection  con =  cone.ConectarBD()) {
+                // Consulta SQL para la inserción
+                String consulta = "SELECT COUNT(*) AS contador FROM grupo WHERE nom_grupo = ? ";
+
+                // Preparar la declaración SQL
+                 try (PreparedStatement declaracion = con.prepareStatement(consulta)) {
+                // Establecer los valores de los datos en la declaración
+                declaracion.setString(1, nombreGrupo);
+
+                // Ejecutar la consulta
+                ResultSet resultado = declaracion.executeQuery();
+
+                // Verificar el resultado
+                if (resultado.next()) {
+                    int contador = resultado.getInt("contador");
+                    return contador > 0; // Devuelve true si existe al menos una coincidencia
+                }
+            }
+
+            // Cerrar la conexión
+            con.close();
+        } catch (SQLException e) {
+                System.out.println(e);
+        }
+
+        return false; // Si ocurre un error o no hay coincidencias
+                
+        
+        }
     
       
       
