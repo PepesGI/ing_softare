@@ -1,7 +1,6 @@
 
 package ing_soft;
 
-import com.mysql.cj.xdevapi.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,12 +46,7 @@ public class grupos {
             return false;
         }
       
-        
-        
-        
-        
-        
-        
+             
 }
     
     
@@ -196,7 +190,9 @@ public class grupos {
       private static int obtenerIdCiclo(String ciclo) {
         conecction cone = new conecction();
         try (Connection  con =  cone.ConectarBD()) {
+
             String consulta = "SELECT id_ciclo FROM ciclo WHERE ciclo = ?";
+
             try (PreparedStatement statement = con.prepareStatement(consulta)) {
                 statement.setString(1, ciclo);
 
@@ -213,7 +209,7 @@ public class grupos {
     }
     
       
-      
+    
        public static void modificarProfesor(String nom_prof, String nom_grupo) {
            
             boolean bnd=true;
@@ -349,49 +345,5 @@ public class grupos {
             System.out.println(e);
         } 
     }
-
-     
-     
-     
-     /*
-     
-     
-     public static void eliminarTabla(String nombreTabla) {
-        
-        conecction cone = new conecction();
-        Statement statement = null;
-
-        try  (Connection  con =  cone.ConectarBD()) { 
-            statement = (Statement) (con.createStatement());
-
-            // Sentencia SQL para eliminar la tabla
-            String sql = "DROP TABLE " + nombreTabla;
-
-            // Ejecutar la sentencia
-            statement.executeUpdate(sql);
-
-            System.out.println("Tabla eliminada exitosamente.");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Cerrar recursos
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-     */    
-    
+ 
 }
