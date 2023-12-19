@@ -17,8 +17,8 @@ public class Ing_soft {
        
        interfaz_sesion obj = new interfaz_sesion();
        obj.setVisible(true);
-            
-            
+       
+
             
             
                     }

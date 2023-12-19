@@ -48,6 +48,7 @@ public class grupos {
         }
       
              
+      
 }
     
     
@@ -191,9 +192,7 @@ public class grupos {
       private static int obtenerIdCiclo(String ciclo) {
         conecction cone = new conecction();
         try (Connection  con =  cone.ConectarBD()) {
-
             String consulta = "SELECT id_ciclo FROM ciclo WHERE ciclo = ?";
-
             try (PreparedStatement statement = con.prepareStatement(consulta)) {
                 statement.setString(1, ciclo);
 
@@ -405,5 +404,121 @@ public class grupos {
             System.out.println(e);
         } 
     }
+     
+     
+     
+      public static String obtenerNombreProfesor(String nom_grupo) {
+        conecction cone = new conecction();
+        int id_prof = 0;
+        try (Connection  con =  cone.ConectarBD()) {
+            String consulta = "SELECT id_prof FROM grupo WHERE nom_grupo = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta)) {
+                statement.setString(1, nom_grupo);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        id_prof = resultSet.getInt("id_prof");
+                    }
+                }
+            }
+            
+            String consulta2 = "SELECT nom_prof FROM profesor WHERE id_prof = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta2)) {
+                statement.setInt(1, id_prof);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                      return  resultSet.getString("nom_prof");
+                    }
+                }
+            }catch (SQLException e) {
+            System.out.println(e);
+        }
+            
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; // Valor por defecto si el usuario no existe o hay un error
+    }
+      
+      
+            public static String obtenerNombreCiclo(String nom_grupo) {
+        conecction cone = new conecction();
+        int id_ciclo = 0;
+        try (Connection  con =  cone.ConectarBD()) {
+            String consulta = "SELECT id_ciclo FROM grupo WHERE nom_grupo = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta)) {
+                statement.setString(1, nom_grupo);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        id_ciclo = resultSet.getInt("id_ciclo");
+                    }
+                }
+            }
+            
+            String consulta2 = "SELECT ciclo FROM ciclo WHERE id_ciclo = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta2)) {
+                statement.setInt(1, id_ciclo);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                      return  resultSet.getString("ciclo");
+                    }
+                }
+            }catch (SQLException e) {
+            System.out.println(e);
+        }
+            
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; // Valor por defecto si el usuario no existe o hay un error
+    }
  
+                  public static String obtenerNombreMateria(String nom_grupo) {
+        conecction cone = new conecction();
+        int id_mat = 0;
+        try (Connection  con =  cone.ConectarBD()) {
+            String consulta = "SELECT id_mat FROM grupo WHERE nom_grupo = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta)) {
+                statement.setString(1, nom_grupo);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                         id_mat = resultSet.getInt("id_mat");
+                    }
+                }
+            }
+            
+            String consulta2 = "SELECT nom_mat FROM materia WHERE id_mat = ?";
+            try (PreparedStatement statement = con.prepareStatement(consulta2)) {
+                statement.setInt(1, id_mat);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                      return  resultSet.getString("nom_mat");
+                    }
+                }
+            }catch (SQLException e) {
+            System.out.println(e);
+        }
+            
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null; // Valor por defecto si el usuario no existe o hay un error
+    }
+            
+            
+            
 }
